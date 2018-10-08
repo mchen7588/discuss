@@ -1,1 +1,10 @@
-<h1>new</h1>
+<%# create a form using @changeset, when someone submits a form, send it to the create route thats related to topic %>
+<%# form_for function eventually becomes a HTML form tag and the properties passed in to it determines where the form will be submitted to %>
+
+<%= form_for @changeset, topic_path(@conn, :create), fn f -> %>
+    <div class="form-group">
+        <%= text_input f, :title, placeholder: "Title", class: "form-control" %>
+    </div>
+
+    <%= submit "Save Topic", class: "btn btn-primary" %>
+<% end %>
