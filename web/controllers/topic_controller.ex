@@ -26,4 +26,8 @@ defmodule Discuss.TopicController do
             
         end
     end
+
+    def edit(conn, _params) do
+        render conn, "edit.html"
+    end
 end
