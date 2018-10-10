@@ -2,7 +2,9 @@ defmodule Discuss.TopicController do
     use Discuss.Web, :controller
 
     def index(conn, _params) do
-        render conn, "index.html"
+        topics = Repo.all(Discuss.Topic)
+
+        render conn, "index.html", topics: topics
     end
 
     def new(conn, _params) do
