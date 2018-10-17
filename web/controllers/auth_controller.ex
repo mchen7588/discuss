@@ -16,7 +16,21 @@ defmodule Discuss.AuthController do
         IO.puts("**********")
         IO.inspect(changeset)
 
-        insert_or_update_user(changeset)
+        signin(conn, changeset)
+    end
+
+    defp signin(conn, changeset) do
+        case insert_or_update_user(changeset) do
+            {:ok, user} ->
+                conn
+                |> put_flash(:info, "welcome")
+                |> put_session(:user_id, user.id)
+                |> redirect(to: topic_path(conn, :index))
+            {:error, _changeset} ->
+                conn
+                |> put_flash(:error, "oh nooo")
+                |> redirect(to: page_path(conn, :index))
+        end
     end
 
     defp insert_or_update_user(%Ecto.Changeset{changes: %{email: email}} = changeset) do
