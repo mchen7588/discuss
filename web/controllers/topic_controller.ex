@@ -1,20 +1,21 @@
 defmodule Discuss.TopicController do
     use Discuss.Web, :controller
+    alias Discuss.Topic
 
     def index(conn, _params) do
-        topics = Repo.all(Discuss.Topic)
+        topics = Repo.all(Topic)
 
         render conn, "index.html", topics: topics
     end
 
     def new(conn, _params) do
-        changeset = Discuss.Topic.changeset(%Discuss.Topic{}, %{})
+        changeset = Topic.changeset(%Topic{}, %{})
 
         render conn, "new.html", changeset: changeset
     end
 
     def create(conn, %{"topic" => topic}) do
-        changeset = Discuss.Topic.changeset(%Discuss.Topic{}, topic)
+        changeset = Topic.changeset(%Topic{}, topic)
 
         case Repo.insert(changeset) do
             {:ok, _topic} ->
@@ -27,15 +28,15 @@ defmodule Discuss.TopicController do
     end
 
     def edit(conn, %{"id" => id}) do
-        topic = Repo.get(Discuss.Topic, id)
-        changeset = Discuss.Topic.changeset(topic)
+        topic = Repo.get(Topic, id)
+        changeset = Topic.changeset(topic)
 
         render conn, "edit.html", changeset: changeset, topic: topic
     end
 
     def update(conn, %{"id" => id, "topic" => new_topic}) do
-        old_topic = Repo.get(Discuss.Topic, id)
-        changeset = Discuss.Topic.changeset(old_topic, new_topic)
+        old_topic = Repo.get(Topic, id)
+        changeset = Topic.changeset(old_topic, new_topic)
 
         case Repo.update(changeset) do
             {:ok, _topic} ->
@@ -48,7 +49,7 @@ defmodule Discuss.TopicController do
     end
 
     def delete(conn, %{"id" => id}) do
-        Repo.get!(Discuss.Topic, id) |> Repo.delete!
+        Repo.get!(Topic, id) |> Repo.delete!
 
         conn
         |> put_flash(:info, "topic deleted")
