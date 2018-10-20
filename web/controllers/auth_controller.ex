@@ -32,4 +32,11 @@ defmodule Discuss.AuthController do
                 Repo.insert(changeset)
         end
     end
+
+    def signout(conn, _params) do
+        conn
+        |> configure_session(drop: true)
+        |> put_flash(:info, "signed out")
+        |> redirect(to: page_path(conn, :index))
+    end
 end

@@ -23,7 +23,7 @@
         <ul class="right">
           <%= if @conn.assigns[:user] do %>
             <li>
-              sign out
+              <%= link "sign out", to: auth_path(@conn, :signout) %>
             </li>
           <% else %>
             <li>
