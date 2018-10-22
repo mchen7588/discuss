@@ -3,7 +3,7 @@ defmodule Discuss.Topic do
 
     schema "topics" do # look inside db and find a table called topics
         field :title, :string # we expect that table to have a single column called title with type string
-        belongs_to :users, Discuss.User
+        belongs_to :user, Discuss.User
     end
 
     def changeset(struct, params \\ %{}) do

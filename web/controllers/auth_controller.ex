@@ -3,7 +3,7 @@ defmodule Discuss.AuthController do
     plug Ueberauth
     alias Discuss.User
   
-    def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider} = params) do
+    def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
         user_params = %{token: auth.credentials.token, email: auth.info.email, provider: provider}
         changeset = User.changeset(%User{}, user_params)
 
@@ -26,10 +26,10 @@ defmodule Discuss.AuthController do
 
     defp insert_or_update_user(%Ecto.Changeset{changes: %{email: email}} = changeset) do
         case Repo.get_by(User, email: email) do
-            user ->
-                {:ok, user}
             nil ->
                 Repo.insert(changeset)
+            user ->
+                {:ok, user}
         end
     end
 
