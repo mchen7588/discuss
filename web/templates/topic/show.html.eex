@@ -1,0 +1,6 @@
+<h1>
+    topic ID: <%= @topic.id %>
+</h1>
+<div>
+    title: <%= @topic.title%>
+</div>
