@@ -4,3 +4,9 @@
 <div>
     title: <%= @topic.title%>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        window.createSocket(<%= @topic.id %>)
+    });
+</script>
