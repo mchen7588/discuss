@@ -5,6 +5,11 @@
     title: <%= @topic.title%>
 </div>
 
+<div>
+    <textarea class="materialize-textarea"></textarea>
+    <button class="btn">add comment</button>
+</div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         window.createSocket(<%= @topic.id %>)
