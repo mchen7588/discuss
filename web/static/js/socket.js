@@ -15,7 +15,7 @@ const createSocket = (topicId) => {
   document.querySelector('button').addEventListener('click', () => {
     const content = document.querySelector('textarea').value;
 
-    channel.push('comments:add', { content });
+    channel.push('comment:add', { content });
   });
 };
 

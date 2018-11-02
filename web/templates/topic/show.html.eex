@@ -1,9 +1,9 @@
 <h1>
     topic ID: <%= @topic.id %>
 </h1>
-<div>
+<h3>
     title: <%= @topic.title%>
-</div>
+</h3>
 
 <div>
     <textarea class="materialize-textarea"></textarea>
