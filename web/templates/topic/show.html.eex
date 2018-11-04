@@ -10,6 +10,9 @@
     <button class="btn">add comment</button>
 </div>
 
+<ul class="collection">
+</ul>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         window.createSocket(<%= @topic.id %>)
